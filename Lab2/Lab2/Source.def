@@ -1,0 +1,8 @@
+LIBRARY
+EXPORTS 
+  NumberRSAencryption
+  NumberRSAdecryption
+  LongNumberRSAencryption
+  LongNumberRSAdecryption
+  StringRSAencryption
+  StringRSAdecryption

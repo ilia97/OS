@@ -1,0 +1,4 @@
+﻿  Lab3.cpp
+f:\ос\лабы\lab3\lab3\lab3.cpp(12): warning C4305: инициализация: усечение из "__int64" к "long"
+f:\ос\лабы\lab3\lab3\lab3.cpp(12): warning C4309: инициализация: усечение константного значения
+  Lab3.vcxproj -> F:\ОС\Лабы\Lab3\Debug\Lab3.exe

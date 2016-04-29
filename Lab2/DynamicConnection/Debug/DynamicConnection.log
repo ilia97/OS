@@ -1,0 +1,13 @@
+﻿  stdafx.cpp
+  DynamicConnection.cpp
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(99): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(110): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(116): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(122): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(135): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(168): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(170): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(177): warning C4018: <: несоответствие типов со знаком и без знака
+e:\ос\лабы\lab2\dynamicconnection\dynamicconnection.cpp(183): warning C4018: <: несоответствие типов со знаком и без знака
+  LINK : не найден или не выполнена сборка E:\ОС\Лабы\Lab2\Debug\DynamicConnection.exe при последней инкрементной компоновке; выполняется полная компоновка
+  DynamicConnection.vcxproj -> E:\ОС\Лабы\Lab2\Debug\DynamicConnection.exe

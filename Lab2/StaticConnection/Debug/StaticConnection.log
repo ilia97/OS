@@ -1,0 +1,12 @@
+﻿  stdafx.cpp
+  StaticConnection.cpp
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(50): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(60): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(66): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(72): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(82): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(103): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(105): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(112): warning C4018: <: несоответствие типов со знаком и без знака
+d:\ос\лабы\lab2\staticconnection\staticconnection.cpp(118): warning C4018: <: несоответствие типов со знаком и без знака
+  StaticConnection.vcxproj -> D:\ОС\Лабы\Lab2\Debug\StaticConnection.exe
