@@ -225,7 +225,7 @@ void AllocMemoryBlock(int size)
 void FreeMemoryBlock(LPVOID address)
 {
 	LPVOID baseAddress = lpMinimumApplicationAddress;
-	while (baseAddress < lpMaximumApplicationAddress)
+	while (baseAddress <= address)
 	{
 		MEMORY_BASIC_INFORMATION buffer;
 		VirtualQuery((LPCVOID)baseAddress, &buffer, sizeof(buffer));
