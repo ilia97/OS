@@ -1,9 +1,9 @@
 ﻿  MailBox.cpp
 d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(14): warning C4305: инициализация: усечение из "__int64" к "long"
 d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(14): warning C4309: инициализация: усечение константного значения
-d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(233): warning C4018: <: несоответствие типов со знаком и без знака
-d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(235): warning C4244: =: преобразование "TCHAR" в "byte", возможна потеря данных
-d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(328): warning C4018: <: несоответствие типов со знаком и без знака
-d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(416): warning C4018: <: несоответствие типов со знаком и без знака
-d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(456): warning C4244: =: преобразование "TCHAR" в "byte", возможна потеря данных
+d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(232): warning C4018: <: несоответствие типов со знаком и без знака
+d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(234): warning C4244: =: преобразование "TCHAR" в "byte", возможна потеря данных
+d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(327): warning C4018: <: несоответствие типов со знаком и без знака
+d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(415): warning C4018: <: несоответствие типов со знаком и без знака
+d:\учёба\2 курс\ос\лабы\lab4\mailbox\mailbox.cpp(455): warning C4244: =: преобразование "TCHAR" в "byte", возможна потеря данных
   MailBox.vcxproj -> D:\Учёба\2 курс\ОС\Лабы\Lab4\Debug\MailBox.exe

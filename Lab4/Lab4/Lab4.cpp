@@ -4,15 +4,17 @@
 #include "stdafx.h"
 #include <Windows.h>
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
 
+// Класс для хранения списка станиц.
 class PageList
 {
 private:
-	int maxSize;
-	int count;
-	int* pages;
+	int maxSize;   // Максимально возможный размер списка страниц.
+	int count;     // Текущее количество страниц.
+	int* pages;    // Массив адрессов страниц, хранящихся в списке.
 	
 public:
 	PageList()
@@ -29,6 +31,7 @@ public:
 		pages = new int[maxSize];
 	}
 
+	// Метод для добавления новой страницы к списку.
 	void Add(int newPage)
 	{
 		if (count < maxSize)
@@ -53,6 +56,7 @@ public:
 		pages[count - 1] = newPage;
 	}
 
+	// Метод распечатки списка.
 	void Print()
 	{
 		if (count == 0)
@@ -79,11 +83,12 @@ public:
 	}
 };
 
+// Класс для хранения четырёхнаправленного кэша.
 class CacheList
 {
 private:
-	int* mask;
-	int* list;
+	int* mask;  // Битовая маска.
+	int* list;  // Массив элементов.
 
 public:
 	CacheList()
@@ -93,6 +98,7 @@ public:
 		list = new int[4];
 	};
 
+	// Добавление нового элемента.
 	void Add(int key)
 	{
 		if (mask[0] == 0)
@@ -125,6 +131,7 @@ public:
 		}
 	};
 
+	// Распечатка состояния.
 	void Print()
 	{
 		printf("Mask: ");
@@ -155,18 +162,18 @@ void PrintSystemInfo()
 {
 	GetSystemInfo(&lpSystemInfo);
 	cout << "System info:" << endl;
-	cout << "Active processor mark: " << lpSystemInfo.dwActiveProcessorMask << endl;
-	cout << "Allocation granularity: " << lpSystemInfo.dwAllocationGranularity << endl;
-	cout << "Number of procesors: " << lpSystemInfo.dwNumberOfProcessors << endl;
-	cout << "Oem Id: " << lpSystemInfo.dwOemId << endl;
+	//cout << "Active processor mark: " << lpSystemInfo.dwActiveProcessorMask << endl;
+	//cout << "Allocation granularity: " << lpSystemInfo.dwAllocationGranularity << endl;
+	//cout << "Number of procesors: " << lpSystemInfo.dwNumberOfProcessors << endl;
+	//cout << "Oem Id: " << lpSystemInfo.dwOemId << endl;
 	cout << "Page size: " << lpSystemInfo.dwPageSize << endl;
-	cout << "Processor type: " << lpSystemInfo.dwProcessorType << endl;
+	//cout << "Processor type: " << lpSystemInfo.dwProcessorType << endl;
 	cout << "Minimum application address: " << lpSystemInfo.lpMinimumApplicationAddress << endl;
 	cout << "Maximum application address: " << lpSystemInfo.lpMaximumApplicationAddress << endl;
-	cout << "Processor architecture: " << lpSystemInfo.wProcessorArchitecture << endl;
-	cout << "Processor level: " << lpSystemInfo.wProcessorLevel << endl;
-	cout << "Processor revision: " << lpSystemInfo.wProcessorRevision << endl;
-	cout << "Reserved: " << lpSystemInfo.wReserved << endl;
+	//cout << "Processor architecture: " << lpSystemInfo.wProcessorArchitecture << endl;
+	//cout << "Processor level: " << lpSystemInfo.wProcessorLevel << endl;
+	//cout << "Processor revision: " << lpSystemInfo.wProcessorRevision << endl;
+	//cout << "Reserved: " << lpSystemInfo.wReserved << endl;
 	cout << "-------------------------------------------------------" << endl;
 
 	lpMinimumApplicationAddress = lpSystemInfo.lpMinimumApplicationAddress;
@@ -176,56 +183,60 @@ void PrintSystemInfo()
 // Распечатка всех свободных страниц.
 void PrintFreeMemoryBlocks()
 {
-	LPVOID address = lpMinimumApplicationAddress;
+	DWORD address = (DWORD)lpMinimumApplicationAddress;
 	cout << "List of free blocks of memory:" << endl;
-	while (address < lpMaximumApplicationAddress)
+	while (address < (DWORD)lpMaximumApplicationAddress)
 	{
 		MEMORY_BASIC_INFORMATION buffer;
 		VirtualQuery((LPCVOID)address, &buffer, sizeof(buffer));
 		if (buffer.State == MEM_FREE)
 		{
-			cout << "Allocation base: " << buffer.AllocationBase << endl;
-			cout << "Allocation protect: " << buffer.AllocationProtect << endl;
+			_getch();
+			//cout << "Allocation base: " << buffer.AllocationBase << endl;
+			//cout << "Allocation protect: " << buffer.AllocationProtect << endl;
 			cout << "Base address: " << buffer.BaseAddress << endl;
-			cout << "Protect: " << buffer.Protect << endl;
+			//cout << "Protect: " << buffer.Protect << endl;
 			cout << "Region size: " << buffer.RegionSize << endl;
-			cout << "State: " << buffer.State << endl;
-			cout << "Type: " << buffer.Type << "\n" << endl;
+			//cout << "State: " << buffer.State << endl;
+			//cout << "Type: " << buffer.Type << endl;
+			cout << endl;
 		}
-		address = &address + buffer.RegionSize;
+		address += buffer.RegionSize;
 	}
 }
 
 // Выделение памяти размером size.
-void AllocMemoryBlock(int size)
+LPVOID AllocMemoryBlock(int size)
 {
+	LPVOID alloc = 0;
 	bool flag = true;
-	LPVOID address = lpMinimumApplicationAddress;
-	while (address < lpMaximumApplicationAddress)
+	DWORD address = (DWORD)lpMinimumApplicationAddress;
+	while (address < (DWORD)lpMaximumApplicationAddress)
 	{
 		MEMORY_BASIC_INFORMATION buffer;
 		VirtualQuery((LPCVOID)address, &buffer, sizeof(buffer));
 		if (buffer.State == MEM_FREE && buffer.RegionSize > size)
 		{
-			VirtualAlloc(address, size, MEM_COMMIT, PAGE_EXECUTE);
-			cout << "Alloc function was successfully perfomed." << endl;
+			alloc = VirtualAlloc((LPVOID)address, size, MEM_RESERVE | MEM_COMMIT, PAGE_READONLY);
+			cout << "Alloc function was successfully perfomed at address " << alloc << "." << endl;
 			flag = false;
 			break;
 
 		}
-		address = &address + buffer.RegionSize;
+		address += buffer.RegionSize;
 	}
 	if (flag)
 	{
 		cout << "There wasn't enough free memory to perform an alloc function." << endl;
 	}
+	return alloc;
 }
 
 // Освобождение памяти по адресу address.
 void FreeMemoryBlock(LPVOID address)
 {
-	LPVOID baseAddress = lpMinimumApplicationAddress;
-	while (baseAddress <= address)
+	DWORD baseAddress = (DWORD)lpMinimumApplicationAddress;
+	while (baseAddress <= (DWORD)address)
 	{
 		MEMORY_BASIC_INFORMATION buffer;
 		VirtualQuery((LPCVOID)baseAddress, &buffer, sizeof(buffer));
@@ -237,7 +248,7 @@ void FreeMemoryBlock(LPVOID address)
 			break;
 
 		}
-		baseAddress = &baseAddress + buffer.RegionSize;
+		baseAddress += buffer.RegionSize;
 	}
 }
 
@@ -280,11 +291,14 @@ void RunLRU()
 
 int main()
 {
-	//PrintSystemInfo();
+	PrintSystemInfo();
 
-	//PrintFreeMemoryBlocks();
+	LPVOID res = AllocMemoryBlock(150);
+	FreeMemoryBlock(res);
 
-	ReplacementAlgorithmRun();
+	PrintFreeMemoryBlocks();
+
+	//ReplacementAlgorithmRun();
 
 	//RunLRU();
 
