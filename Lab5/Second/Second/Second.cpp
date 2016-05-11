@@ -10,9 +10,8 @@ using namespace std;
 void PrintFileInformation(WIN32_FIND_DATA data, FILETIME start, FILETIME end)
 {
 	// Выводим информацию только о файлах, созданные в указанный промежуток времени.
-	/*if (CompareFileTime(&start, &data.ftCreationTime) < 0 &&
-		CompareFileTime(&data.ftCreationTime, &end) < 0)*/
-	if(true)
+	if (CompareFileTime(&start, &data.ftCreationTime) < 0 &&
+		CompareFileTime(&data.ftCreationTime, &end) < 0)
 	{
 		wcout << L"File name: " << data.cFileName << endl;
 		wcout << L"Size: " << data.nFileSizeLow << " bytes" << endl;
@@ -105,9 +104,13 @@ void PrintFileInformation(WIN32_FIND_DATA data, FILETIME start, FILETIME end)
 	}
 }
 
-int main()
+int _tmain(int argc, _TCHAR* argv[])
 {
-	FILETIME start = FILETIME(), end = FILETIME();
+	FILETIME start, end;
+	start.dwLowDateTime = *(DWORD*)argv[1];
+	start.dwHighDateTime = *(DWORD*)argv[2];
+	end.dwLowDateTime = *(DWORD*)argv[3];
+	end.dwHighDateTime = *(DWORD*)argv[4];
 	TCHAR *path = _T("..\\..\\Files\\*.txt");
 	HANDLE hf;
 	WIN32_FIND_DATA w32;
