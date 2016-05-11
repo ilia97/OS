@@ -293,8 +293,8 @@ int main()
 {
 	PrintSystemInfo();
 
-	LPVOID res = AllocMemoryBlock(150);
-	FreeMemoryBlock(res);
+	/*LPVOID res = AllocMemoryBlock(150);
+	FreeMemoryBlock(res);*/
 
 	PrintFreeMemoryBlocks();
 
