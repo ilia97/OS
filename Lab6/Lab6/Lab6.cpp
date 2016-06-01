@@ -7,6 +7,7 @@
 
 using namespace std;
 
+HANDLE firstTaskMutex;
 CRITICAL_SECTION criticalSection;
 CRITICAL_SECTION consumerCriticalSection;
 CRITICAL_SECTION producerCriticalSection;
@@ -19,12 +20,13 @@ queue<LPVOID> producerConsumerQueue = queue<LPVOID>(); // Очередь для производит
 
 DWORD WINAPI FirstFunction(LPVOID arg)
 {
-	EnterCriticalSection(&criticalSection);
+	// Если мьютекс с таким именем уже создан, то новый не создайтся, а возврщается уже существующий.
+	firstTaskMutex = CreateMutex(NULL, true, L"mutex");
 	functionCallCount++;
-	LeaveCriticalSection(&criticalSection);
+	ReleaseMutex(firstTaskMutex);
 
 	_tprintf(_T("Thread %d has started.\n"), (int)arg);
-	for (int j = 0; j < 3000000; j++) {}
+	for (int j = 0; j < 600000000; j++) {}
 	_tprintf(_T("Thread %d has stopped.\n"), (int)arg);
 	return 0;
 }
@@ -96,7 +98,7 @@ void SecondTask()
 
 int main()
 {
-	//FirstTask();
-	SecondTask();
+	FirstTask();
+	//SecondTask();
     return 0;
 }

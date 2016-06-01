@@ -22,8 +22,9 @@ DWORD WINAPI timer(LPVOID param)
 		si.cb = sizeof(si);
 		memset(&pi, 0, sizeof(pi));
 		wchar_t* pr1 = new wchar_t[MAX_PATH];
-		wcscpy_s(pr1, 42, L"ProducerConsumer.exe");
+		wcscpy_s(pr1, 42, L"Lab6.exe");
 		CreateProcess(NULL, pr1, 0, 0, 0, CREATE_NEW_CONSOLE, 0, 0, &si, &pi);
+		WaitForSingleObject(pi.hProcess, INFINITE);
 		CloseHandle(pi.hThread);
 		CloseHandle(pi.hProcess);
 	}
