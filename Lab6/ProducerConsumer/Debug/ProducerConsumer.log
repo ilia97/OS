@@ -1,6 +1,5 @@
-﻿  stdafx.cpp
-  ProducerConsumer.cpp
-d:\учёба\2 курс\ос\лабы\lab6\producerconsumer\producerconsumer.cpp(48): warning C4172: возвращение адреса локальной или временной переменной : text
-d:\учёба\2 курс\ос\лабы\lab6\producerconsumer\producerconsumer.cpp(61): warning C4172: возвращение адреса локальной или временной переменной : text
-d:\учёба\2 курс\ос\лабы\lab6\producerconsumer\producerconsumer.cpp(80): warning C4172: возвращение адреса локальной или временной переменной : text
-  ProducerConsumer.vcxproj -> D:\Учёба\2 курс\ОС\Лабы\Lab6\Debug\ProducerConsumer.exe
+﻿  ProducerConsumer.cpp
+f:\ос\лабы\lab6\producerconsumer\producerconsumer.cpp(48): warning C4172: возвращение адреса локальной или временной переменной : text
+f:\ос\лабы\lab6\producerconsumer\producerconsumer.cpp(61): warning C4172: возвращение адреса локальной или временной переменной : text
+f:\ос\лабы\lab6\producerconsumer\producerconsumer.cpp(80): warning C4172: возвращение адреса локальной или временной переменной : text
+  ProducerConsumer.vcxproj -> F:\ОС\Лабы\Lab6\Debug\ProducerConsumer.exe

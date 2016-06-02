@@ -1,2 +1,5 @@
 ﻿  TimeTable.cpp
-  TimeTable.vcxproj -> D:\Учёба\2 курс\ОС\Лабы\Lab6\Debug\TimeTable.exe
+f:\ос\лабы\lab6\timetable\timetable.cpp(4): warning C4603: _CRT_SECURE_NO_WARNINGS: макрос не определен или определение изменилось после использования предкомпилированного заголовка
+  f:\ос\лабы\lab6\timetable\timetable.cpp(4): note: Добавление макроопределения в предкомпилированный заголовок вместо определения его здесь
+  f:\ос\лабы\lab6\timetable\timetable.cpp(6): note: использование предварительно скомпилированного заголовка
+  TimeTable.vcxproj -> F:\ОС\Лабы\Lab6\Debug\TimeTable.exe

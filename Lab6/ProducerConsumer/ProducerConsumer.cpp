@@ -107,7 +107,7 @@ DWORD WINAPI ProducerFunction(LPVOID arg)
 
 		LeaveCriticalSection(&producerCriticalSection);
 		
-		Sleep(100 + rand() % (500 - 100));
+		Sleep(100 + rand() % (400));
 	}
 	return 0;
 }

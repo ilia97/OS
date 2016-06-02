@@ -35,7 +35,7 @@ void Put(int philosopherNumber, int forkNumber)
 }
 
 // Решение через иерархию ресурсов.
-DWORD WINAPI PhilosopherFunction(LPVOID arg)
+void PhilosopherFunction(int arg)
 {
 	int philosopherNumber = (int)arg;
 	int leftForkNumber = philosopherNumber % 5;
@@ -62,7 +62,7 @@ DWORD WINAPI PhilosopherFunction(LPVOID arg)
 		secondFork = "left";
 	}
 
-	while (true)
+	for(int i = 0; i < 5; i++)
 	{
 		Think(philosopherNumber);
 		WaitForSingleObject(forks[firstForkNumber], INFINITE);
@@ -75,37 +75,41 @@ DWORD WINAPI PhilosopherFunction(LPVOID arg)
 		Put(philosopherNumber, firstForkNumber);
 		ReleaseMutex(forks[firstForkNumber]);
 	}
-	return 0;
 }
 
-void PhilosophersTask()
+void PhilosophersTask(int philosopherNumber)
 {
 	HANDLE* philosophers = new HANDLE[5];
 	InitializeCriticalSection(&philosopherCriticalSection);
 
 	// Инициализация вилок.
-	for (int i = 0; i < 5; i++)
-	{
-		forks[i] = CreateMutex(0, false, NULL);
-	}
+	forks[0] = CreateMutex(0, false, L"1");
+	forks[1] = CreateMutex(0, false, L"2");
+	forks[2] = CreateMutex(0, false, L"3");
+	forks[3] = CreateMutex(0, false, L"4");
+	forks[4] = CreateMutex(0, false, L"5");
+
 	// Инициализация философов.
-	for (int i = 0; i < 5; i++)
+	/*for (int i = 0; i < 5; i++)
 	{
 		philosophers[i] = CreateThread(0, 0, PhilosopherFunction, (LPVOID)(i + 1), 0, NULL);
-	}
+	}*/
+	PhilosopherFunction(philosopherNumber);
 
-	Sleep(5000);
+	//Sleep(5000);
 	//WaitForMultipleObjects(5, philosophers, TRUE, INFINITE);
 
-	for (int i = 0; i < 5; i++)
+	/*for (int i = 0; i < 5; i++)
 	{
 		CloseHandle(philosophers[i]);
-	}
+	}*/
 }
 
-int main()
+int main(int argc, TCHAR* argv[])
 {
-	PhilosophersTask();
+	HANDLE h = CreateWaitableTimer(0, FALSE, L"timer");
+	WaitForSingleObject(h, INFINITE);
+	PhilosophersTask(_ttoi(argv[1]));
     return 0;
 }
 
